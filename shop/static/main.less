@@ -1,0 +1,169 @@
+@c1: #8b4514;
+@c2: #fdffe2;
+@c3: #faff3b;
+@c4: #a60007;
+
+body{
+  opacity: 0.95;
+  background-image: url("img/coffee-bg.jpg");
+  text-align: center;
+}
+.bg-c1 {
+  background-color: @c1;
+}
+.bg-c2 {
+  background-color: #fff89f;
+}
+.font-14{
+  font-size: 12px;
+}
+
+.btn-1{
+  border: @c1 solid 2px;
+  border-radius: 5px;
+  background-color: @c1 *1;
+  color: @c2;
+}
+
+.btn-1:hover{
+  background-color: @c1 *1.2;
+}
+
+.nav-link{
+  color: @c2;
+  display: inline;
+}
+.nav-link:hover{
+  color: @c3;
+  text-decoration: underline;
+}
+.navbar-toggle
+{
+  display: none;
+  margin:0;
+  padding: 0;
+  border: 0;
+}
+.nav-link{
+  margin-right: 2%;
+  font-size: 18px;
+}
+.container-fluid{
+  padding: 2% 0;
+  min-height: 350px;
+}
+.form-container{
+  text-align: center;
+  width: 40%;
+  color: #643212;
+}
+.controls{
+  justify-content: center;
+  font-size: 14px;
+}
+.controls ul{
+  display: none;
+}
+#hint_id_password2{
+  display: none;
+}
+.control-label{
+  font-size: 20px;
+}
+.alert{
+  margin-bottom: 0;
+  color: @c4;
+}
+
+
+
+.greeting{
+  vertical-align: center;
+}
+.frame{
+  margin: 2% 0;
+}
+.frame-bar{
+  background-color: @c1;
+  color: @c2;
+  margin: 2% 0;
+  border: @c2 solid 2px;
+}
+.frame-item{
+  //border: @c1 solid 1px;
+  padding: 1%;
+}
+.frame:hover{
+  background-color: @c1 *1.5;
+  a{
+    color: @c3;
+    text-decoration: underline;
+  }
+}
+
+a{
+  color: black;
+}
+
+input{
+  width: 30%;
+  min-width: 120px;
+}
+.help-block {
+  font-size: 16px;
+  strong{color: @c4}
+
+}
+ul{
+  list-style-type: none;
+  padding: 0;
+}
+footer{
+  text-align: center;
+  color:@c2;
+}
+.row{
+  margin-right: 0;
+  margin-left: 0;
+}
+
+
+// Mobiles
+@media screen and (max-width: 575px) {
+  .navbar-toggle{
+    display: block
+  }
+
+  .display-4{
+    font-size: 40px;
+  }
+  h5{
+    font-size: 15px;
+  }
+
+  .form-container{
+    font-size: 12px;
+    text-align: justify;
+    width: 80%;
+    h2{
+      text-align: center;
+    }
+}
+.frame{
+ border-bottom: @c1 solid 2px;
+}
+.frame-img{
+  float:left;
+  margin-top: 5%;
+}
+.mobile-hidden{
+  display: none;
+}
+//.mobile-col-1{
+//  width: 18%;
+//}
+//.mobile-col-4{
+//  width: 72%;
+//}
+
+}

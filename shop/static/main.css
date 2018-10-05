@@ -1,0 +1,143 @@
+body {
+  opacity: 0.95;
+  background-image: url("img/coffee-bg.jpg");
+  text-align: center;
+}
+.bg-c1 {
+  background-color: #8b4514;
+}
+.bg-c2 {
+  background-color: #fff89f;
+}
+.font-14 {
+  font-size: 12px;
+}
+.btn-1 {
+  border: #8b4514 solid 2px;
+  border-radius: 5px;
+  background-color: #8b4514;
+  color: #fdffe2;
+}
+.btn-1:hover {
+  background-color: #a75318;
+}
+.nav-link {
+  color: #fdffe2;
+  display: inline;
+}
+.nav-link:hover {
+  color: #faff3b;
+  text-decoration: underline;
+}
+.navbar-toggle {
+  display: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.nav-link {
+  margin-right: 2%;
+  font-size: 18px;
+}
+.container-fluid {
+  padding: 2% 0;
+  min-height: 350px;
+}
+.form-container {
+  text-align: center;
+  width: 40%;
+  color: #643212;
+}
+.controls {
+  justify-content: center;
+  font-size: 14px;
+}
+.controls ul {
+  display: none;
+}
+#hint_id_password2 {
+  display: none;
+}
+.control-label {
+  font-size: 20px;
+}
+.alert {
+  margin-bottom: 0;
+  color: #a60007;
+}
+.greeting {
+  vertical-align: center;
+}
+.frame {
+  margin: 2% 0;
+}
+.frame-bar {
+  background-color: #8b4514;
+  color: #fdffe2;
+  margin: 2% 0;
+  border: #fdffe2 solid 2px;
+}
+.frame-item {
+  padding: 1%;
+}
+.frame:hover {
+  background-color: #d1681e;
+}
+.frame:hover a {
+  color: #faff3b;
+  text-decoration: underline;
+}
+a {
+  color: black;
+}
+input {
+  width: 30%;
+  min-width: 120px;
+}
+.help-block {
+  font-size: 16px;
+}
+.help-block strong {
+  color: #a60007;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+footer {
+  text-align: center;
+  color: #fdffe2;
+}
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+@media screen and (max-width: 575px) {
+  .navbar-toggle {
+    display: block;
+  }
+  .display-4 {
+    font-size: 40px;
+  }
+  h5 {
+    font-size: 15px;
+  }
+  .form-container {
+    font-size: 12px;
+    text-align: justify;
+    width: 80%;
+  }
+  .form-container h2 {
+    text-align: center;
+  }
+  .frame {
+    border-bottom: #8b4514 solid 2px;
+  }
+  .frame-img {
+    float: left;
+    margin-top: 5%;
+  }
+  .mobile-hidden {
+    display: none;
+  }
+}

@@ -1,0 +1,37 @@
+{% extends 'coffeshop/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+
+        <div class="container">
+                <div class="row frame-bar">
+                     <div class="col-sm-2 frame-item"></div>
+                     <div class="col-sm-2 frame-item">Name</div>
+                     <div class="col-sm-4 frame-item mobile-hidden">Description</div>
+                    <div class="col-sm-2 frame-item mobile-hidden"> Provider</div>
+                     <div class="col-sm-2 frame-item mobile-hidden">Price [S/M/L]</div>
+                </div>
+            {% for offer in offers%}
+                <div class="row frame">
+                    <div class="row col-4 col-sm-4 ">
+                         <div class="col-sm-6 frame-item frame-img"><img src="{% static 'img/coffee.jpg' %}" alt=""></div>
+                         <div class="col-sm-6 frame-item"><a href="#"> {{ offer.name }} </a></div>
+                    </div>
+
+                    <div class="row col-8 col-sm-8">
+                         <div class="col-sm-6 frame-item">{{ offer.description }}</div>
+                         <div class="col-sm-3 frame-item">{{ offer.provider.name }}</div>
+                         <div class="col-sm-3 frame-item">{{ offer.price_S}}$/ {{ offer.price_M}}$/ {{ offer.price_L}}$</div>
+                     </div>
+                </div>
+            {% endfor %}
+        <p> Presented prices refer to Small[250ml], Medium[400ml] and Large[650ml] sizes.</p>
+        </div>
+
+    {% else %}
+        <h4 class="greeting">Please <a href="{% url 'home' %}">log in</a> to browse the shop</h4>
+    {% endif %}
+{% endblock content %}
