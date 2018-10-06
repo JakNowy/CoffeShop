@@ -1,30 +1,30 @@
 {% extends 'coffeshop/base.html' %}
 {% load crispy_forms_tags %}
-
+{% load static %}
 
 {% block content %}
-    {% if user.is_authenticated %}
         <div class="container">
                 <div class="row frame-bar">
                      <div class="col-sm-2 frame-item"></div>
-                     <div class="col-sm-2 frame-item">Name</div>
-                     <div class="col-sm-4 frame-item">Description</div>
-                     <div class="col-sm-2 frame-item"> Provider</div>
-                     <div class="col-sm-2 frame-item">Price [S/M/L]</div>
+                     <div class="col-sm-2 frame-item">Provider</div>
+                     <div class="col-sm-4 frame-item mobile-hidden">Description</div>
+                    <div class="col-sm-2 frame-item mobile-hidden">Offers</div>
+                     <div class="col-sm-2 frame-item mobile-hidden">Address</div>
                 </div>
-            {% for offer in offers%}
+            {% for provider in providers%}
                 <div class="row frame">
-                     <div class="col-sm-2 frame-item frame-img">[IMG]</div>
-                     <div class="col-sm-2 frame-item">{{ offer.name }}</div>
-                     <div class="col-sm-4 frame-item">{{ offer.description }}</div>
-                     <div class="col-sm-2 frame-item">{{ offer.provider.name }}</div>
-                     <div class="col-sm-2 frame-item">{{ offer.price_S}}$/ {{ offer.price_M}}$/ {{ offer.price_L}}$</div>
+                    <div class="row col-4 col-sm-4 ">
+                         <div class="col-sm-6 frame-item frame-img"><img src="{% static 'img/coffee.jpg' %}" alt=""></div>
+                         <div class="col-sm-6 frame-item desc"><a href="{% url 'provider-detail' provider=provider.id%}">{{ provider.name }} </a></div>
+                    </div>
+
+                    <div class="row col-8 col-sm-8">
+                         <div class="col-sm-6 frame-item desc">{{ provider.description }}</div>
+                         <div class="col-sm-3 frame-item desc">{{ provider.offer_set.count }}</div>
+                         <div class="col-sm-3 frame-item desc">{{ provider.address }}</div>
+                     </div>
                 </div>
             {% endfor %}
-
         </div>
 
-    {% else %}
-        <h4 class="greeting">Please <a class="" href="{% url 'home' %}">log in</a> to browse the providers</h4>
-    {% endif %}
 {% endblock content %}

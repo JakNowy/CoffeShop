@@ -1,0 +1,37 @@
+{% extends 'coffeshop/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content %}
+
+    <div class="container">
+    <h2 class="mb-4" >Order confirmation</h2>
+      <div class="row">
+          <div class="col-sm-4"> </div>
+          <div class="col-4 col-sm-1 frame-item frame-img">
+              <img src="{% static 'img/coffee.jpg' %}">
+          </div>
+
+          <div class="col-4 col-sm-1 p-0">
+              <div class="row justify-content-center">
+                  <div class="frame-item p-0"><strong>{{ order.name }}</strong></div>
+              </div>
+              <div class="row justify-content-center">
+                  <div class="frame-item">{{ order.provider.name }}</div>
+              </div>
+          </div>
+
+          <div class="col-4 col-sm-2">
+              S: {{ order.price_S }}$ <br>M: {{ order.price_M }}$ <br> L: {{ order.price_L }}$
+          </div>
+      </div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-1 btn-sm bg-c2 m-3">Order</button>
+        </form>
+
+     </div>
+
+{% endblock content %}

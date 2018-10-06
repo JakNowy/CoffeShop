@@ -9,7 +9,7 @@ body {
 .bg-c2 {
   background-color: #fff89f;
 }
-.font-14 {
+.font-12 {
   font-size: 12px;
 }
 .btn-1 {
@@ -88,7 +88,7 @@ body {
   text-decoration: underline;
 }
 a {
-  color: black;
+  color: #2048ff;
 }
 input {
   width: 30%;
@@ -139,5 +139,8 @@ footer {
   }
   .mobile-hidden {
     display: none;
+  }
+  .desc {
+    font-size: 13px;
   }
 }

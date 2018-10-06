@@ -16,4 +16,14 @@ class UserRegistrerForm(UserCreationForm):
             'username': None,
             'password1': None,
         }
-        
+
+class OrderForm(forms.Form):
+    choices = (
+        ('S', ("Small")),
+        ('M', ("Medium")),
+        ('L', ("Large")),
+    )
+    city = forms.CharField(max_length=30)
+    street = forms.CharField(max_length=30)
+    house_number = forms.CharField(max_length=10)
+    size = forms.ChoiceField(choices=choices)

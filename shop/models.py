@@ -13,11 +13,11 @@ class Customer(models.Model):
     def __str__(self):
         return f'Mr/Mrs.{self.first_name} {self.last_name}'
 
-@receiver(post_save, sender=User)
-def update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Customer.objects.create(user=instance)
-    instance.customer.save()
+    @receiver(post_save, sender=User)
+    def update_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Customer.objects.create(user=instance)
+        instance.customer.save()
 
 
 class Provider(models.Model):
@@ -25,10 +25,12 @@ class Provider(models.Model):
     description = models.TextField()
     address = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=9)
-
+    image = models.ImageField(default='provider.jpg', upload_to='provider-imgs')
+    email = models.EmailField(default='JakNowySolutions@gmail.com', max_length=50)
 
     def __str__(self):
         return f'{self.name} \n Address: {self.address}, phone:{self.phone_number}'
+
 
 class Offer(models.Model):
     name = models.CharField(max_length=50)
@@ -38,7 +40,7 @@ class Offer(models.Model):
     price_M = models.DecimalField(decimal_places=2, max_digits=5)
     price_L = models.DecimalField(decimal_places=2, max_digits=5)
     with_sugar = models.BooleanField(default=False)
-
+    image = models.ImageField(default='coffee.jpg', upload_to='offer-imgs')
 
     def __str__(self):
         return f'{self.name} coffee. {self.price_S}/{self.price_M}/{self.price_L}'
