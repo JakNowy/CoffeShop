@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
-from .forms import UserRegistrerForm, OrderForm
+from django.shortcuts import render, redirect, reverse
+from .forms import UserRegistrerForm, OrderForm, ProviderCreationForm
 from django.views.generic.base import View
 from django.contrib.auth import login, authenticate
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Provider, Offer, User
 from django.core.mail import send_mail
@@ -32,7 +32,7 @@ class RegisterView(View):
 class ProvidersView(LoginRequiredMixin, ListView):
     model = Provider
     template_name = 'coffeshop/providers.html'
-    paginate_by = 10
+    paginate_by = 5
     context_object_name = 'providers'
     ordering = ['name']
 
@@ -40,7 +40,7 @@ class ProvidersView(LoginRequiredMixin, ListView):
 class OffersView(LoginRequiredMixin, ListView):
     model = Offer
     template_name = 'coffeshop/offers.html'
-    paginate_by = 10
+    paginate_by = 5
     context_object_name = 'offers'
     ordering = ['name']
 
@@ -75,7 +75,7 @@ class OfferDetailView(LoginRequiredMixin, View):
                       f'Address: {city}, {street}, {house_number}.'
 
             send_mail(f'New order: {order.name} {size}',message,'JakNowySolutions@gmail.com',{order.provider.email})
-            return redirect('thanks', user_id=user_id)
+            return redirect('thanks',user_id=user_id)
         else:
             return render(request, 'coffeshop/offer-detail.html', {'form': form,
                                                                    'order': order})
@@ -85,3 +85,10 @@ class ThanksView(View):
     def get(self, request, user_id):
         user = User.objects.get(id=user_id)
         return render(request, 'coffeshop/thanks.html', {'user':user.first_name})
+
+
+class ProviderCreationView(CreateView):
+    model = Provider
+    fields = ['name', 'email', 'image', 'address', 'description', 'phone_number']
+    template_name = 'coffeshop/provider-new.html'
+    # success_url = reverse('providers')

@@ -14,7 +14,7 @@
             {% for provider in providers%}
                 <div class="row frame">
                     <div class="row col-4 col-sm-4 ">
-                         <div class="col-sm-6 frame-item frame-img"><img src="{% static 'img/coffee.jpg' %}" alt=""></div>
+                         <div class="col-sm-6 frame-item frame-img"><img src="{{ provider.image.url }}" alt=""></div>
                          <div class="col-sm-6 frame-item desc"><a href="{% url 'provider-detail' provider=provider.id%}">{{ provider.name }} </a></div>
                     </div>
 
@@ -25,6 +25,8 @@
                      </div>
                 </div>
             {% endfor %}
+        <h6 class="text-right my-3 mr-sm-5"><a href="{% url 'provider-new' %}">+ Add new provider</a></h6>
+
         </div>
 
 {% endblock content %}

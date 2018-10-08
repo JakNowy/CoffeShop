@@ -4,7 +4,7 @@
 
 
 {% block content %}
-
+    {% if offers %}
         <div class="container">
                 <div class="row frame-bar">
                      <div class="col-sm-2 frame-item"></div>
@@ -16,7 +16,7 @@
             {% for offer in offers%}
                 <div class="row frame">
                     <div class="row col-4 col-sm-4 ">
-                         <div class="col-sm-6 frame-item frame-img"><img src="{% static 'img/coffee.jpg' %}" alt=""></div>
+                         <div class="col-sm-6 frame-item frame-img"><img src="{{ offer.image.url }}" alt=""></div>
                          <div class="col-sm-6 frame-item desc"><a href="{% url 'offer-detail' offer.id%}">{{ offer.name }}</a></div>
                     </div>
 
@@ -27,7 +27,44 @@
                      </div>
                 </div>
             {% endfor %}
+
+                {#    PAGINATION    #}
+
+                <div class="my-3">
+                {% if is_paginated %}
+
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-outline-info btn-sm" href="?page=1"> < </a>
+                    {% endif %}
+
+                    {% for page in page_obj.paginator.page_range %}
+                        {% if page > page_obj.number|add:'-3' and page <  page_obj.number %}
+                            <a class="btn btn-outline-info btn-sm" href="?page={{ page }}">{{ page }}</a>
+                        {% endif %}
+
+                        {% if page == page_obj.number %}
+                            <a class="btn btn-info btn-sm" href="?page={{ page }}">{{ page }}</a>
+                        {% endif %}
+
+                            {% if page > page_obj.number and page < page_obj.number|add:'3' %}
+                                <a class="btn btn-outline-primary btn-sm" href="?page={{ page }}">{{ page }}</a>
+                            {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-outline-info btn-sm" href="?page={{ page_obj.paginator.num_pages }}"> > </a>
+                    {% endif %}
+
+                {% endif %}
+                </div>
+
+
         <p> Presented prices refer to Small[250ml], Medium[400ml] and Large[650ml] sizes.</p>
+        {% else %}
+        <p>There are no offers for this provider yet.</p>
+        {% endif %}
         </div>
+
+
 
 {% endblock content %}

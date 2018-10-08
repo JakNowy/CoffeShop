@@ -17,7 +17,6 @@ body{
 .font-12{
   font-size: 12px;
 }
-
 .btn-1{
   border: @c1 solid 2px;
   border-radius: 5px;
@@ -105,9 +104,12 @@ a{
   color: #2048ff;
 }
 
-input{
-  width: 30%;
+input,textarea{
+  width: 40%;
   min-width: 120px;
+}
+textarea{
+  max-height: 100px;
 }
 .help-block {
   font-size: 16px;
@@ -147,20 +149,24 @@ footer{
     width: 80%;
     h2{
       text-align: center;
-    }
-}
-.frame{
- border-bottom: @c1 solid 2px;
-}
-.frame-img{
-  float:left;
-  margin-top: 5%;
-}
-.mobile-hidden{
-  display: none;
-}
-.desc{
-  font-size: 13px;
-}
+     }
 
+    }
+  .frame{
+   border-bottom: @c1 solid 2px;
+  }
+  .frame-img{
+    float:left;
+    margin-top: 5%;
+  }
+  .mobile-hidden{
+    display: none;
+  }
+  .desc{
+    font-size: 13px;
+  }
+
+  input,textarea{
+    width: 60%;
+  }
 }

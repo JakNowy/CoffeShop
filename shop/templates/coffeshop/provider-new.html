@@ -1,0 +1,13 @@
+{% extends 'coffeshop/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+        <form class="form-container mx-auto py-4 c1" method="post">
+            <h2 class="mb-3">Register your cafe</h2>
+            {% csrf_token %}
+            {{ form|crispy}}
+            <p class="font-14">Note: Fields marked with "*" are required.</p>
+            <button class="btn btn-1 btn-sm bg-c2" type="submit"> Add cafe</button>
+        </form>
+{% endblock content %}

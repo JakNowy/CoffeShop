@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Customer
+from .models import Customer, Provider
 
 class UserRegistrerForm(UserCreationForm):
     # confirm_password = forms.CharField(widget=forms.PasswordInput())
@@ -27,3 +27,9 @@ class OrderForm(forms.Form):
     street = forms.CharField(max_length=30)
     house_number = forms.CharField(max_length=10)
     size = forms.ChoiceField(choices=choices)
+
+
+class ProviderCreationForm(forms.ModelForm):
+    class Meta:
+        model = Provider
+        fields = ['name','email', 'image', 'address', 'description', 'phone_number']

@@ -2,6 +2,8 @@ from django.db import models
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.shortcuts import reverse
+from PIL import Image
 
 
 class Customer(models.Model):
@@ -21,15 +23,28 @@ class Customer(models.Model):
 
 
 class Provider(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, verbose_name='Company name')
     description = models.TextField()
     address = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=9)
     image = models.ImageField(default='provider.jpg', upload_to='provider-imgs')
-    email = models.EmailField(default='JakNowySolutions@gmail.com', max_length=50)
+    email = models.EmailField(max_length=50)
+
+    def get_absolute_url(self):
+        return reverse('providers')
 
     def __str__(self):
         return f'{self.name} \n Address: {self.address}, phone:{self.phone_number}'
+
+    def save(self):
+        super().save()
+
+        img = Image.open(self.image.path)
+
+        if img.height > 50 or img.width > 50:
+            output_size = (50,50)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 
 
 class Offer(models.Model):
