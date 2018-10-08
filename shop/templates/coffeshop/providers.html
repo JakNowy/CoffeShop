@@ -25,6 +25,33 @@
                      </div>
                 </div>
             {% endfor %}
+                            <div class="my-3">
+                {% if is_paginated %}
+
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-outline-info btn-sm" href="?page=1"> < </a>
+                    {% endif %}
+
+                    {% for page in page_obj.paginator.page_range %}
+                        {% if page > page_obj.number|add:'-3' and page <  page_obj.number %}
+                            <a class="btn btn-outline-info btn-sm" href="?page={{ page }}">{{ page }}</a>
+                        {% endif %}
+
+                        {% if page == page_obj.number %}
+                            <a class="btn btn-info btn-sm" href="?page={{ page }}">{{ page }}</a>
+                        {% endif %}
+
+                            {% if page > page_obj.number and page < page_obj.number|add:'3' %}
+                                <a class="btn btn-outline-primary btn-sm" href="?page={{ page }}">{{ page }}</a>
+                            {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-outline-info btn-sm" href="?page={{ page_obj.paginator.num_pages }}"> > </a>
+                    {% endif %}
+
+                {% endif %}
+                </div>
         <h6 class="text-right my-3 mr-sm-5"><a href="{% url 'provider-new' %}">+ Add new provider</a></h6>
 
         </div>

@@ -32,7 +32,7 @@ class RegisterView(View):
 class ProvidersView(LoginRequiredMixin, ListView):
     model = Provider
     template_name = 'coffeshop/providers.html'
-    paginate_by = 5
+    paginate_by = 3
     context_object_name = 'providers'
     ordering = ['name']
 
